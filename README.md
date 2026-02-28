@@ -1,383 +1,208 @@
-AI Website Builder with Sentiment Analysis
-A full-stack web application that generates AI-powered websites based on user requirements and provides sentiment analysis on user feedback. The application uses Groq API with open-source models for intelligent website generation and BERT-based models for sentiment analysis.
+# AI Website Builder with Sentiment Analysis
 
-📋 Table of Contents
-Features
-'''
-Tech Stack
+Full-stack web application that uses AI (Groq + open-source LLMs) to generate complete websites from user descriptions and includes real-time sentiment analysis of user feedback using lightweight BERT-style models.
 
-Project Structure
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Groq-FF6F61?style=for-the-badge&logoColor=white" alt="Groq" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+</p>
 
-Prerequisites
+## 📋 Table of Contents
 
-Installation
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Project Structure](#-project-structure)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Running the Application](#-running-the-application)
+- [API Documentation](#-api-documentation)
+- [Usage Guide](#-usage-guide)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-Configuration
+## ✨ Features
 
-Running the Application
+### Website Generation
+- AI-powered full website generation using Groq + Mixtral / Llama models
+- Custom inputs: business name, industry, colors, pages, tone, features, CTA
+- Instant responsive preview (desktop / tablet / mobile)
+- Export clean HTML + CSS + JS
 
-API Documentation
+### Sentiment Analysis
+- Lightweight BERT-based sentiment classification
+- Real-time analysis of user comments & feedback
+- Sentiment distribution dashboard (positive / neutral / negative)
+- Historical trend visualization
 
-Usage Guide
+### User & Project Management
+- Secure JWT authentication
+- Multiple projects per user
+- Clean dashboard with project status & quick actions
 
-Contributing
+## 🛠 Tech Stack
 
-License
-'''
+### Frontend
+- React 18
+- React Router v6
+- Tailwind CSS
+- React Hook Form
+- Axios
+- Heroicons
+- react-hot-toast
+- react-colorful (color picker)
+- @headlessui/react
 
-✨ Features
-Website Generation
-AI-Powered Website Creation: Generate complete websites using Groq API with open-source models (Mixtral, Llama, etc.)
+### Backend
+- FastAPI
+- MySQL + aiomysql
+- Redis (optional – caching / Celery)
+- PyJWT + bcrypt
+- Groq API (LLM inference)
+- Hugging Face `transformers` (sentiment)
+- Celery (optional background tasks)
 
-Customizable Templates: Input business details, industry, color schemes, and desired pages
-
-Real-time Preview: View generated websites instantly with responsive design previews
-
-Code Export: View and copy the generated HTML/CSS/JS code
-
-Sentiment Analysis
-BERT-Based Analysis: Analyze user comments and feedback using lightweight BERT models
-
-Sentiment Dashboard: Visual representation of positive, neutral, and negative feedback
-
-Real-time Processing: Asynchronous sentiment analysis of comments
-
-Historical Data: Track sentiment trends over time
-
-User Management
-JWT Authentication: Secure user registration and login
-
-Project Management: Create, view, and manage multiple website projects
-
-User Dashboard: Centralized view of all projects and their status
-
-🛠 Tech Stack
-Frontend
-React 18 - UI library
-
-React Router 6 - Navigation and routing
-
-Tailwind CSS - Styling and responsive design
-
-React Hook Form - Form management
-
-Axios - HTTP client
-
-Heroicons - Icon library
-
-React Hot Toast - Notification system
-
-React Colorful - Color picker component
-
-Headless UI - Accessible UI components
-
-Backend
-FastAPI - Python web framework
-
-MySQL - Database (with aiomysql for async operations)
-
-Redis - Caching and message broker (optional)
-
-JWT - Authentication
-
-bcrypt - Password hashing
-
-Groq API - AI website generation
-
-Transformers - BERT models for sentiment analysis
-
-Celery - Background task processing (optional)
-
-📁 Project Structure
-'''
-project/
+## 📁 Project Structure
+```
+project-root/
 ├── frontend/
-│   ├── myapp/
-│   │   ├── public/
-│   │   │   └── index.html
-│   │   ├── src/
-│   │   │   ├── components/
-│   │   │   │   ├── CommentBox.js
-│   │   │   │   ├── Navbar.js
-│   │   │   │   ├── Preview.js
-│   │   │   │   ├── PrivateRoute.js
-│   │   │   │   └── ProjectForm.js
-│   │   │   ├── contexts/
-│   │   │   │   └── AuthContext.js
-│   │   │   ├── pages/
-│   │   │   │   ├── Dashboard.js
-│   │   │   │   ├── Login.js
-│   │   │   │   ├── ProjectDetails.js
-│   │   │   │   ├── Register.js
-│   │   │   │   ├── SentimentDashboard.js
-│   │   │   │   ├── Settings.js
-│   │   │   │   └── WebsitePreview.js
-│   │   │   ├── App.js
-│   │   │   ├── index.js
-│   │   │   └── index.css
-│   │   ├── package.json
-│   │   └── tailwind.config.js
-│   └── README.md
+│   └── myapp/
+│       ├── public/
+│       ├── src/
+│       │   ├── components/
+│       │   ├── contexts/
+│       │   ├── pages/
+│       │   ├── App.js
+│       │   ├── index.js
+│       │   └── index.css
+│       ├── package.json
+│       └── tailwind.config.js
 │
 ├── backend/
 │   ├── src/
-│   │   ├── services/
-│   │   │   ├── __init__.py
-│   │   │   ├── groq_website_generator.py
-│   │   │   ├── light_sentiment.py
-│   │   │   └── website_generator.py
-│   │   └── main.py
+│   │   └── services/
 │   ├── workers/
-│   │   ├── __init__.py
-│   │   ├── generation_worker.py
-│   │   └── sentiment_worker.py
 │   ├── .env
 │   └── requirements.txt
 │
 └── README.md
-'''
-🔧 Prerequisites
-Node.js (v18 or higher)
+```
 
-Python (v3.9 or higher)
 
-MySQL (v8.0 or higher)
+## 🔧 Prerequisites
 
-Redis (optional, for Celery)
+- Node.js ≥ 18
+- Python ≥ 3.9
+- MySQL ≥ 8.0
+- Redis (optional)
+- Groq API key
 
-Groq API Key (for AI website generation)
+## 📦 Installation
 
-📦 Installation
-Backend Setup
-Navigate to backend directory
+### Backend
 
-bash
+```bash
 cd backend
-Create virtual environment
 
-'''
-bash
+# Create & activate virtual environment
 python -m venv venv
-'''
-# On Windows
-'''
-venv\Scripts\activate
-'''
+source venv/bin/activate    # Linux/macOS
+# or: venv\Scripts\activate   # Windows
 
-
-bash
-'''
 pip install -r requirements.txt
-'''
-Install additional ML libraries
 
-bash
-'''
-pip install transformers torch torchvision torchaudio
-'''
-Frontend Setup
-Navigate to frontend directory
+# ML dependencies (transformers + torch)
+pip install transformers torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+# ^ use /cu121 if you have NVIDIA GPU and want GPU acceleration
 
-bash
-'''
+Frontend
+```
 cd frontend/myapp
-Install Node dependencies
-'''
-
-bash
-'''
 npm install
-'''
-⚙️ Configuration
-Backend Environment Variables (.env)
-Create a .env file in the backend directory:
+```
 
-env
-# MySQL Database
-'''
+⚙️ Configuration
+Backend – backend/.env
+```
+# Database
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password
 DB_NAME=websitebuilder
-'''
 
-
-# Redis (optional)
-'''
-REDIS_HOST=localhost
-REDIS_PORT=6379
+# Optional Redis
 REDIS_URL=redis://localhost:6379/0
-'''
 
 # Security
-'''
-SECRET_KEY=your-super-secret-key-change-in-production
+SECRET_KEY=change-this-in-production-very-long-random-string
 ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-'''
+ACCESS_TOKEN_EXPIRE_MINUTES=1440
 
-# Groq API
-'''
-GROQ_API_KEY=your_groq_api_key_here
-'''
+# Groq
+GROQ_API_KEY=gsk_........................................
 
-# API
-'''
+# App
 API_V1_PREFIX=/api/v1
-CORS_ORIGINS=["http://localhost:3000"]
-'''
-Frontend Configuration
-Create a .env file in frontend/myapp:
+CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+```
 
-env
-
+Frontend – frontend/myapp/.env
+```
 REACT_APP_API_URL=http://localhost:8000
-🚀 Running the Application
-Start Backend Server
-bash
-'''
-cd backend
-python src/main.py
-'''
-The backend will start at http://localhost:8000
+```
 
-Start Frontend Development Server
-bash
-'''
+🚀 Running the Application
+Backend
+```
+cd backend
+uvicorn src.main:app --reload --port 8000
+```
+Frontend
+```
 cd frontend/myapp
 npm start
-'''
-The frontend will start at http://localhost:3000
+```
 
-Optional: Start Celery Workers (for background tasks)
-bash
-# Terminal 1 - Start Redis (if using Celery)
-'''
+→ Open http://localhost:3000
+Optional – Celery (background generation & sentiment)
+
+```
+# Redis (if not already running)
 redis-server
-''''
 
-# Terminal 2 - Start Generation Worker
-'''
-cd backend/workers
-celery -A generation_worker worker --loglevel=info --pool=solo
-'''
+# Generation worker
+celery -A workers.generation_worker worker --loglevel=info --pool=solo
 
-# Terminal 3 - Start Sentiment Worker
-'''
-cd backend/workers
-celery -A sentiment_worker worker --loglevel=info --pool=solo
-'''
+# Sentiment worker
+celery -A workers.sentiment_worker worker --loglevel=info --pool=solo
+```
+
 📚 API Documentation
-Once the backend is running, access the automatic API documentation at:
 
-Swagger UI: http://localhost:8000/api/docs
+Interactive docs: http://localhost:8000/docs
+Alternative: http://localhost:8000/redoc
 
-ReDoc: http://localhost:8000/api/redoc
+📖 Quick Usage Guide
 
-Main Endpoints
-Authentication
-POST /api/auth/register - Register new user
-
-POST /api/auth/login - Login user
-
-GET /api/auth/me - Get current user info
-
-Projects
-POST /api/projects - Create new project
-
-GET /api/projects - Get all user projects
-
-GET /api/projects/{id} - Get project details
-
-GET /api/projects/{id}/status - Get project generation status
-
-Comments & Sentiment
-POST /api/projects/{id}/comments - Add comment
-
-GET /api/projects/{id}/sentiment - Get sentiment dashboard
-
-📖 Usage Guide
-1. User Registration/Login
-Navigate to http://localhost:3000/register to create an account
-
-Login at http://localhost:3000/login with your credentials
-
-2. Creating a Project
-From the dashboard, click "New Project"
-
-Fill in the project details:
-'''
-Business name
-
-Industry
-
-Custom domain (optional)
-
-Pages to include
-
-Design tone
-
-Brand colors
-
-Features
-
-Call-to-action text
-'''
-
-Submit the form to start AI website generation
-
-3. Viewing Generated Website
-After generation completes, click on the project
-
-Navigate to the "Preview & Edit" tab
-
-View the AI-generated website
-
-Toggle between desktop, tablet, and mobile views
-
-View the generated HTML code
-
-4. Adding Comments
-Go to the "Comments & Sentiment" tab
-
-Add comments about the website
-
-View sentiment analysis results in real-time
-
-Track positive, neutral, and negative feedback
-
-5. Sentiment Dashboard
-Click "Full Dashboard" in the comments section
-
-View sentiment distribution over time
-
-Analyze top keywords and trends
-
-Filter comments by sentiment
+Register → /register
+Login → /login
+Create project from dashboard
+Wait for AI generation (or check status)
+Preview, copy code, add comments
+View sentiment analysis & trends
 
 🤝 Contributing
-Fork the repository
 
-Create a feature branch (git checkout -b feature/AmazingFeature)
-
-Commit your changes (git commit -m 'Add some AmazingFeature')
-
-Push to the branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
+Fork the repo
+Create feature branch (git checkout -b feature/amazing-thing)
+Commit (git commit -m 'Add amazing thing')
+Push (git push origin feature/amazing-thing)
+Open Pull Request
 
 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+MIT License
+See LICENSE for full text.
 
-🙏 Acknowledgments
-Groq for providing fast AI inference API
-
-Hugging Face for transformer models
-
-Tailwind CSS for the amazing CSS framework
-
-FastAPI for the excellent Python web framework
-
-📧 Contact
-For questions or support, please open an issue on the GitHub repository.
