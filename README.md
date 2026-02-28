@@ -3,7 +3,7 @@ A full-stack web application that generates AI-powered websites based on user re
 
 📋 Table of Contents
 Features
-
+'''
 Tech Stack
 
 Project Structure
@@ -23,6 +23,7 @@ Usage Guide
 Contributing
 
 License
+'''
 
 ✨ Features
 Website Generation
@@ -88,7 +89,7 @@ Transformers - BERT models for sentiment analysis
 Celery - Background task processing (optional)
 
 📁 Project Structure
-text
+'''
 project/
 ├── frontend/
 │   ├── myapp/
@@ -134,6 +135,7 @@ project/
 │   └── requirements.txt
 │
 └── README.md
+'''
 🔧 Prerequisites
 Node.js (v18 or higher)
 
@@ -153,87 +155,119 @@ bash
 cd backend
 Create virtual environment
 
+'''
 bash
 python -m venv venv
+'''
 # On Windows
+'''
 venv\Scripts\activate
-# On macOS/Linux
-source venv/bin/activate
-Install Python dependencies
+'''
+
 
 bash
+'''
 pip install -r requirements.txt
+'''
 Install additional ML libraries
 
 bash
+'''
 pip install transformers torch torchvision torchaudio
+'''
 Frontend Setup
 Navigate to frontend directory
 
 bash
+'''
 cd frontend/myapp
 Install Node dependencies
+'''
 
 bash
+'''
 npm install
+'''
 ⚙️ Configuration
 Backend Environment Variables (.env)
 Create a .env file in the backend directory:
 
 env
 # MySQL Database
+'''
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
 DB_PASSWORD=your_password
 DB_NAME=websitebuilder
+'''
+
 
 # Redis (optional)
+'''
 REDIS_HOST=localhost
 REDIS_PORT=6379
 REDIS_URL=redis://localhost:6379/0
+'''
 
 # Security
+'''
 SECRET_KEY=your-super-secret-key-change-in-production
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+'''
 
 # Groq API
+'''
 GROQ_API_KEY=your_groq_api_key_here
+'''
 
 # API
+'''
 API_V1_PREFIX=/api/v1
 CORS_ORIGINS=["http://localhost:3000"]
+'''
 Frontend Configuration
 Create a .env file in frontend/myapp:
 
 env
+
 REACT_APP_API_URL=http://localhost:8000
 🚀 Running the Application
 Start Backend Server
 bash
+'''
 cd backend
 python src/main.py
+'''
 The backend will start at http://localhost:8000
 
 Start Frontend Development Server
 bash
+'''
 cd frontend/myapp
 npm start
+'''
 The frontend will start at http://localhost:3000
 
 Optional: Start Celery Workers (for background tasks)
 bash
 # Terminal 1 - Start Redis (if using Celery)
+'''
 redis-server
+''''
 
 # Terminal 2 - Start Generation Worker
+'''
 cd backend/workers
 celery -A generation_worker worker --loglevel=info --pool=solo
+'''
 
 # Terminal 3 - Start Sentiment Worker
+'''
 cd backend/workers
 celery -A sentiment_worker worker --loglevel=info --pool=solo
+'''
 📚 API Documentation
 Once the backend is running, access the automatic API documentation at:
 
@@ -273,7 +307,7 @@ Login at http://localhost:3000/login with your credentials
 From the dashboard, click "New Project"
 
 Fill in the project details:
-
+'''
 Business name
 
 Industry
@@ -289,6 +323,7 @@ Brand colors
 Features
 
 Call-to-action text
+'''
 
 Submit the form to start AI website generation
 
